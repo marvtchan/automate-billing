@@ -61,7 +61,7 @@ options13 = ['GraphWear Technologies Inc.']
 
 options14 = ["Logic.Ink", "LogicInk"]
 
-options15 = ["Mammoth Diagnostics", "Mammoth BioSciences"]
+options15 = ["Mammoth Diagnostics", "Mammoth BioSciences", 'Mammoth Biosciences']
 
 options16 = ['Mitokinin INC']
 
@@ -127,6 +127,10 @@ weekly_run()
 
 		
 print(bill_hours)
+
+check1 = sum(bill_hours)
+
+print(check1)
 
 
 
