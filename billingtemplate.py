@@ -1,7 +1,6 @@
 import pandas as pd
 import numpy as np
 import random 
-import itertools
 
 from pandas import ExcelFile
 from pandas import ExcelWriter
@@ -30,84 +29,11 @@ df1 = pd.read_excel(xls, 'Week 2')
 global bill_hours
 bill_hours = []
 
-
-#create variable for Mammoth
-
-options1 = ['AesculaTech']
-
-options2 = ['Alaunus']
-
-options3 = ['Alpine Roads','Alpine Roads, Inc.']
-
-options4 = ['Applaud Medical']
-
-options5 = ["Coral Genomics"]
-
-options6 = ["Cypre, Inc."]
-
-options7 = ["Deciduous Therapeutics"]
-
-options8 = ["Delve Therapeutics"]
-
-options9 = ['Epiodyne']
-
-options10 = ["Fountain Therapeutics"]
-
-options11 = ['GeneTether, Inc']
-
-options12 = ['Gordian Biotechnology']
-
-options13 = ['GraphWear Technologies Inc.']
-
-options14 = ["Logic.Ink", "LogicInk"]
-
-options15 = ["Mammoth Diagnostics", "Mammoth BioSciences", 'Mammoth Biosciences']
-
-options16 = ['Mitokinin INC']
-
-options17 = ['Mojo Health Inc']
-
-options18 = ['Naked Biome']
-
-options19 = ['Nitrome Biosciences']
-
-options20 = ['OneSkin']
-
-options21 = ['Prellis Biologics']
-
-options22 = ['Provenance Biofabrics, Inc','Provenance','Provenance Biofabrics Inc.']
-
-options23 = ["Quartz Therapeutics"]
-
-options24 = ['Rumi Scientific']
-
-options25 = ['Scaled Biolabs','Scaled Biolabs Inc.']
-
-options26 = ["Scribe Biosciences"]
-
-options27 = ['Siolta','Siolta Therapeutics']
-
-options28 = ["Soteria Biotherapeutics",'Soteria Biotherapeutics, Inc.']
-
-options29 = ["SyntheX, Inc."]
-
-options30 = ['Telo Therapeutics, Inc.']
-
-options31 = ['The Wild Type']
-
-
-companies = [options1, options2, options3, options4, options5, options6, options7, options8, options9, 
-options10, options11, options12, options13, options14, options15, options16, options17,
-options18, options19, options20, options21, options22, options23, options24, options25, options26,
-options27, options28, options29, options30, options31]
-
-
-
-
-print(companies)
-
-
-
+companies = [['AesculaTech'], ['Alaunus'], ['Alpine Roads','Alpine Roads, Inc.'], ['Applaud Medical'], ["Coral Genomics"], ["Cypre, Inc."], ["Deciduous Therapeutics"], ["Delve Therapeutics"], ['Epiodyne'], 
+["Fountain Therapeutics"], ['GeneTether, Inc'], ['Gordian Biotechnology'], ['GraphWear Technologies Inc.'], ["Logic.Ink", "LogicInk"], ["Mammoth Diagnostics", "Mammoth BioSciences", 'Mammoth Biosciences'], ['Mitokinin INC'], ['Mojo Health Inc'],
+['Naked Biome'], ['Nitrome Biosciences'], ['OneSkin'], ['Prellis Biologics'], ['Provenance Biofabrics, Inc','Provenance','Provenance Biofabrics Inc.'], ["Quartz Therapeutics"], ['Rumi Scientific']
+, ['Scaled Biolabs','Scaled Biolabs Inc.'], ["Scribe Biosciences"],
+['Siolta','Siolta Therapeutics'], ["Soteria Biotherapeutics",'Soteria Biotherapeutics, Inc.'], ["SyntheX, Inc."], ['Telo Therapeutics, Inc.'], ['The Wild Type']]
 
 def weekly_run():
 	for options in companies:
@@ -117,15 +43,8 @@ def weekly_run():
 		bill_hours.append(companyhours)
 
 
-
-
-
 weekly_run()
 
-
-
-
-		
 print(bill_hours)
 
 check1 = sum(bill_hours)
@@ -133,31 +52,10 @@ check1 = sum(bill_hours)
 print(check1)
 
 
-
-		#bill_hours.append(total_hours)
-
-
-		
-
-
-
-
-
-
-
 companiesdf1 = pd.DataFrame({'Companies': ['AesculaTech','Alaunus','Alpine Roads','Applaud',
 	'Coral Genomics','Cypre','Deciduous','Delve','Epiodyne','Fountain','GeneTether','Gordian','GraphWear',
 	'LogicInk','Mammoth','Mitokinin','Mojo','Naked Biome','Nitrome','OneSkin','Prellis','Provenance',
 	'Quartz','Rumi','Scaled BioLabs','Scribe','Siolta','Soteria','SyntheX','Telo','The Wild Type'], 'Hours' : bill_hours})
-
-
-
-
-
-
-
-
-
 
 
 companiesdf1.to_excel('output2.xlsx')
