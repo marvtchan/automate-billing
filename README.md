@@ -1,28 +1,9 @@
 # automate-billing
 Automate billing
+This python script will extract data from an excel sheet with booking information
 
-Input Excel Sheet conferencerooms.xlsx
+No set up is required (except for renaming column of emails 'email'.
 
-Run 
+The script companiesunique.py will extract domain names from emails and loop through hours booked based on those domains.
 
-[In]
-Week2.py
-week3.py
-week4.py
-week5.py
 
-[Out]
-week2bill.xlsx
-week3bill.xlsx
-week4bill.xlsx
-week5bill.xlsx
-
-Run
-
-[In]
-
-combine.py
-
-[Out]
-
-conferenceroomsmarch.xlsx
