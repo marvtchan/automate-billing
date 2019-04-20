@@ -1,35 +1,39 @@
+import os
 import pandas as pd
-import numpy as np
-from pandas import ExcelFile
-from pandas import ExcelWriter
 
-pd.options.display.max_rows = 999
+print(os.getcwd())
 
-xls = pd.ExcelFile('conferencerooms.xls')
-df1 = pd.read_excel(xls, 'Sheet 2')
+# show current working directory
 
-global bill_hours
-bill_hours = []
+print(os.listdir(os.getcwd()))
 
-users = df1['email'].str.split("@", expand= True)
-users.columns = ['user','domain']
-companiesunique = users.domain.unique()
+path = os.getcwd()
 
-print(companiesunique)
+files = os.listdir(path)
 
-def weekly_run():
-	for options in companiesunique:
-		print(options)
-		results = df1[df1['email'].str.contains(options)]
-		companyhours = float(sum(results['Hours']))
-		bill_hours.append(companyhours)
+files_xls = [f for f in files if f[-9:] == 'bill.xlsx']
 
-weekly_run()
+print(files_xls)
 
-print(bill_hours)
+df = pd.DataFrame()
 
-companiesdf1 = pd.DataFrame({'Companies': companiesunique, 'Hours' : bill_hours})
+for f in files_xls:
+	data = pd.read_excel(f, 'Sheet1')
+	df = df.append(data)
 
-print(companiesdf1)
+df['Total'] = df.groupby(['Companies'])['Hours'].transform('sum')
+
+new_df = df.drop_duplicates(subset=['Companies'])
+
+cols = [1,3]
+
+billdf = new_df[new_df.columns[cols]]
 
 
+newbilldf = billdf.set_index('Companies')
+
+
+print(newbilldf)
+
+newbilldf.to_excel('conferenceroomsmarch.xlsx') 
+  
