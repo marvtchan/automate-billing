@@ -1,38 +1,35 @@
-import os
 import pandas as pd
+import numpy as np
+from pandas import ExcelFile
+from pandas import ExcelWriter
 
-print(os.getcwd())
+pd.options.display.max_rows = 999
 
-# show current working directory
+xls = pd.ExcelFile('conferencerooms.xls')
+df1 = pd.read_excel(xls, 'Sheet 2')
 
-print(os.listdir(os.getcwd()))
+global bill_hours
+bill_hours = []
 
-path = os.getcwd()
+users = df1['email'].str.split("@", expand= True)
+users.columns = ['user','domain']
+companiesunique = users.domain.unique()
 
-files = os.listdir(path)
+print(companiesunique)
 
-files_xls = [f for f in files if f[-9:] == 'bill.xlsx']
+def weekly_run():
+	for options in companiesunique:
+		print(options)
+		results = df1[df1['email'].str.contains(options)]
+		companyhours = float(sum(results['Hours']))
+		bill_hours.append(companyhours)
 
-print(files_xls)
+weekly_run()
 
-df = pd.DataFrame()
+print(bill_hours)
 
-for f in files_xls:
-	data = pd.read_excel(f, 'Sheet1')
-	df = df.append(data)
+companiesdf1 = pd.DataFrame({'Companies': companiesunique, 'Hours' : bill_hours})
 
-df['Total'] = df.groupby(['Companies'])['Hours'].transform('sum')
-
-new_df = df.drop_duplicates(subset=['Companies'])
-
-cols = [1,3]
-
-billdf = new_df[new_df.columns[cols]]
-
-
-newbilldf = billdf.set_index('Companies')
+print(companiesdf1)
 
 
-print(newbilldf)
-
-newbilldf.to_excel('conferenceroomsmarch.xlsx')
