@@ -8,7 +8,7 @@ pd.options.display.max_rows = 999
 
 #import any excel file for parsing
 xls = pd.ExcelFile('conferencerooms.xls')
-df1 = pd.read_excel(xls, 'Sheet 2')
+df1 = pd.read_excel(xls, 'Sheet')
 
 #create variable for sum of hours billable
 global bill_hours
