@@ -27,15 +27,14 @@ print(autoclavedf)
 
 # to find monthly subscription full service autclave
 def autoclave_gravity():
-		bins = df.groupby(['Company','Wash']).sum()
-		bins = bins.reset_index(level=['Company','Wash'])
-		binsmonthly = bins[bins['Wash'].str.contains('Grav.2')]
-		binsmonthly.loc[binsmonthly.Bins < 1, 'Bill'] = '$0.00'
-		binsmonthly.loc[binsmonthly.Bins >= 1, 'Bill'] = '$65.00'
-		binsmonthly.loc[binsmonthly.Bins > 2, 'Bill'] = '$130.00'
-		binsmonthly.loc[binsmonthly.Bins > 3, 'Bill'] = 'Count'
-		
-		return (binsmonthly)
+    bins = df.groupby(['Company','Wash']).sum()
+    bins = bins.reset_index(level=['Company','Wash'])
+    binsmonthly = bins[bins['Wash'].str.contains('Grav.2')]
+    binsmonthly.loc[binsmonthly.Bins < 1, 'Bill'] = '$0.00'
+    binsmonthly.loc[binsmonthly.Bins >= 1, 'Bill'] = '$65.00'
+    binsmonthly.loc[binsmonthly.Bins > 2, 'Bill'] = '$130.00'
+    binsmonthly.loc[binsmonthly.Bins > 3, 'Bill'] = 'Count'
+    return (binsmonthly)
 
 
 binsmonthly = autoclave_gravity()
@@ -61,13 +60,13 @@ print(gravity)
 
 #to find price of each 
 def autoclave_liquid():
-		liquid = autoclavedf[autoclavedf['Wash'].str.contains('Liq')]
-		liquid.loc[liquid.Type == 'TOP LOAD', 'Bill'] = '$35.00'
-		liquid.loc[liquid.Type == 'FULL', 'Bill'] = '$50.00'
-		liquid.loc[liquid.Shared == 'Yes', 'Bill'] = '$25.00'
-		liquidcount = liquid.groupby(['Company', 'Bill']).size().reset_index(name='counts')
+    liquid = autoclavedf[autoclavedf['Wash'].str.contains('Liq')]
+    liquid.loc[liquid.Type == 'TOP LOAD', 'Bill'] = '$35.00'
+    liquid.loc[liquid.Type == 'FULL', 'Bill'] = '$50.00'
+    liquid.loc[liquid.Shared == 'Yes', 'Bill'] = '$25.00'
+    liquidcount = liquid.groupby(['Company', 'Bill']).size().reset_index(name='counts')
 
-		return(liquidcount)
+    return(liquidcount)
 
 autoclave_liquid()
 
